@@ -1,24 +1,35 @@
-import request from '@/utils/request'
+import request from './request'
 
-export function login(data) {
+/**
+ * 获取用户信息接口
+ */
+export function getInfo() {
   return request({
-    url: '/user/login',
-    method: 'post',
-    data
+    url: 'v1/user/info',
+    method: 'GET',
+    params: {
+      domain: 'zeus-config'
+    }
   })
 }
 
-export function getInfo(token) {
+export function login() {
   return request({
-    url: '/user/info',
-    method: 'get',
-    params: { token }
+    url: 'v1/user/login',
+    method: 'GET',
+    params: {
+      domain: 'zeus-config'
+    }
   })
 }
 
 export function logout() {
   return request({
-    url: '/user/logout',
-    method: 'post'
+    url: 'v1/user/logout',
+    method: 'GET',
+    params: {
+      domain: 'zeus-config'
+    }
   })
 }
+
