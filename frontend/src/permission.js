@@ -76,7 +76,7 @@ router.beforeEach(async(to, from, next) => {
           location.href = `//auth.${domainHost.domain}/login?redirectURL=${currURL}`
         }
       } else {
-        location.href = `//localhost:9527/login?redirectURL=${currURL}`
+        location.href = `//auth.bullteam.cn/login?redirectURL=${currURL}`
       }
       NProgress.done()
     }
