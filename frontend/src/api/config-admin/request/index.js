@@ -1,6 +1,5 @@
 /**
  * 通用 ajax 请求方法
- * TODO:
  */
 import axios from 'axios'
 import store from '@/store'
@@ -18,7 +17,7 @@ import {
 const service = axios.create({
   // withCredentials: true,
   // baseURL: process.env.BASE_API, // api 的 base_url
-  baseURL: process.env['VUE_APP_CRAWLNOVEL-ADMIN'],
+  baseURL: process.env['VUE_APP_ADMIN'],
   // request timeout
   timeout: 15000
   // 默认表单提交的方式
@@ -45,7 +44,6 @@ service.interceptors.request.use(
   }
 )
 
-// TODO: 以下需要具体修改
 // response interceptor
 service.interceptors.response.use(
   /**

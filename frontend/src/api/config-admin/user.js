@@ -1,11 +1,12 @@
 import request from './request'
+import qs from 'qs'
 
 /**
  * 获取用户信息接口
  */
 export function getInfo() {
   return request({
-    url: 'v1/user/info',
+    url: 'v1/users/info',
     method: 'GET',
     params: {
       domain: 'zeus-config'
@@ -13,19 +14,17 @@ export function getInfo() {
   })
 }
 
-export function login() {
+export function login(data) {
   return request({
-    url: 'v1/user/login',
-    method: 'GET',
-    params: {
-      domain: 'zeus-config'
-    }
+    url: 'v1/users/login',
+    method: 'POST',
+    data: qs.stringify(data)
   })
 }
 
 export function logout() {
   return request({
-    url: 'v1/user/logout',
+    url: 'v1/users/logout',
     method: 'GET',
     params: {
       domain: 'zeus-config'
