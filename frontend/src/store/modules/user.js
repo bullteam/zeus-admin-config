@@ -76,7 +76,7 @@ const actions = {
     })
   },
 
-  GetMenu({ commit }) {
+  getMenu({ commit }) {
     return new Promise((resolve, reject) => {
       getMenu().then(response => {
         // 拉取了菜单的设置
