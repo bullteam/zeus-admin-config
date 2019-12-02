@@ -26,6 +26,9 @@ const mutations = {
   },
   SET_ROLES: (state, roles) => {
     state.roles = roles
+  },
+  SET_LOADED_MENUS: (state, flag) => {
+    state.loadedMenus = flag
   }
 }
 

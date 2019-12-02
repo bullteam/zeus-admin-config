@@ -29,7 +29,7 @@ import Layout from '@/layout'
     noCache: true                if set true, the page will no be cached(default is false)
     affix: true                  if set true, the tag will affix in the tags-view
     breadcrumb: false            if set false, the item will hidden in breadcrumb(default is true)
-    activeMenu: '/example/list'  if set path, the sidebar will highlight the path you set
+    activeMenu: '/config/list'  if set path, the sidebar will highlight the path you set
   }
  */
 
@@ -90,6 +90,24 @@ export const constantRoutes = [
  * the routes that need to be dynamically loaded based on user roles
  */
 export const asyncRoutes = [
+  {
+    path: '/configlist/list',
+    component: Layout,
+    redirect: '/configlist/list',
+    name: 'Config',
+    meta: {
+      title: 'config',
+      icon: 'config'
+    },
+    children: [
+      {
+        path: '/configlist/list',
+        component: () => import('@/views/config/create'),
+        name: 'config list',
+        meta: { title: 'Create config', icon: 'edit' }
+      }
+    ]
+  },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]

@@ -20,6 +20,7 @@ const permission = {
       commit
     }, powerMenus) {
       // TODO:
+      console.log('xxxx')
       // 修改权限判断 Wendell Sheh
       return new Promise(resolve => {
         const accessedRouters = filterAsyncRouter(asyncRouterMap, powerMenus)
