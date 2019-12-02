@@ -1,6 +1,8 @@
 import { login, logout, getInfo } from '@/api/user'
+// import { login, logout, getInfo } from '@/api/config-admin/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import router, { resetRouter } from '@/router'
+import { getMenu } from '@/api/config-admin/auth'
 
 const state = {
   token: getToken(),
@@ -25,6 +27,9 @@ const mutations = {
   },
   SET_ROLES: (state, roles) => {
     state.roles = roles
+  },
+  SET_LOADED_MENUS: (state, flag) => {
+    state.loadedMenus = flag
   }
 }
 
@@ -68,6 +73,22 @@ const actions = {
         resolve(data)
       }).catch(error => {
         reject(error)
+      })
+    })
+  },
+
+  getMenu({ commit }) {
+    return new Promise((resolve, reject) => {
+      getMenu().then(response => {
+        // 拉取了菜单的设置
+        commit('SET_LOADED_MENUS', true)
+        const powerMenus = response.data.result || []
+        if (powerMenus.length > 0) {
+          resolve(response)
+        } else {
+          // 后端返回菜单列表为空, 无权限
+          reject(' user has insufficient permissions!')
+        }
       })
     })
   },
