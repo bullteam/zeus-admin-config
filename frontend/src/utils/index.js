@@ -345,22 +345,3 @@ export function removeClass(ele, cls) {
     ele.className = ele.className.replace(reg, ' ')
   }
 }
-
-/**
- * 获取当前域名的主域名(我们这边带端口 80默认没有)
- * host : 127.0.0.1:8080
- * hostname : 127.0.0.1
- * a.b.bullteam.cn => .bullteam.cn
- * b.bullteam.cn   => .bullteam.cn
- */
-export const getDomainHost = (host = location.host) => {
-  // 判断是否我们的主域
-  const arrDomainHost = host.split('.')
-  const domain = arrDomainHost[arrDomainHost.length - 2] || ''
-  const suffix = arrDomainHost[arrDomainHost.length - 1] || ''
-
-  return {
-    host,
-    domain: `${domain}.${suffix}`
-  }
-}

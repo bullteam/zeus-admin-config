@@ -314,31 +314,31 @@ export const asyncRoutes = [
   },
 
   {
-    path: '/config',
+    path: '/example',
     component: 'layout/Layout',
-    redirect: '/config/list',
+    redirect: '/example/list',
     name: 'Example',
     meta: {
       title: 'Example',
-      icon: 'config'
+      icon: 'example'
     },
     children: [
       {
         path: 'create',
-        component: 'views/config/create',
+        component: 'views/example/create',
         name: 'CreateArticle',
         meta: { title: 'Create Article', icon: 'edit' }
       },
       {
         path: 'edit/:id(\\d+)',
-        component: 'views/config/edit',
+        component: 'views/example/edit',
         name: 'EditArticle',
         meta: { title: 'Edit Article', noCache: true },
         hidden: true
       },
       {
         path: 'list',
-        component: 'views/config/list',
+        component: 'views/example/list',
         name: 'ArticleList',
         meta: { title: 'Article List', icon: 'list' }
       }

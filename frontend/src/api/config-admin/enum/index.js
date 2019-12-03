@@ -8,3 +8,4 @@ export const TOKEN_EXPIRATION = [
   // token 无法解密
   109001010
 ]
+export const NOT_SHOW_MSG = []

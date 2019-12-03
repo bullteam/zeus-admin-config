@@ -18,7 +18,7 @@ export function getMenu() {
  */
 export function permList() {
   return request({
-    url: 'v1/user/perm/list',
+    url: 'v1/users/perm/list',
     method: 'GET',
     params: {
       code: 'zeus-config'

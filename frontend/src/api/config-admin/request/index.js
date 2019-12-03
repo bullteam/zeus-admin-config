@@ -60,6 +60,7 @@ service.interceptors.response.use(
     // 102001003 需要
     if (res.code !== 200) {
       // 登录失效
+      console.log(TOKEN_EXPIRATION.includes(res.code))
       if (TOKEN_EXPIRATION.includes(res.code)) {
         // 请自行在引入 MessageBox
         MessageBox.alert('token expired', 'token expired', {
