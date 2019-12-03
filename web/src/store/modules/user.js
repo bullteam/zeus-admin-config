@@ -1,5 +1,5 @@
-import { login, logout, getInfo } from '@/api/user'
-// import { login, logout, getInfo } from '@/api/config-admin/user'
+// import { login, logout, getInfo } from '@/api/user'
+import { login, logout, getInfo } from '@/api/config-admin/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import router, { resetRouter } from '@/router'
 import { getMenu } from '@/api/config-admin/auth'
@@ -80,8 +80,13 @@ const actions = {
   getMenu({ commit }) {
     return new Promise((resolve, reject) => {
       getMenu().then(response => {
+        const { data } = response
         // 拉取了菜单的设置
         commit('SET_LOADED_MENUS', true)
+        commit('SET_ROLES', data.result)
+        commit('SET_NAME', 'admin')
+        commit('SET_AVATAR', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif')
+        commit('SET_INTRODUCTION', 'xxxx')
         const powerMenus = response.data.result || []
         if (powerMenus.length > 0) {
           resolve(response)
