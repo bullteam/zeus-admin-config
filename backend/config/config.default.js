@@ -16,7 +16,7 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1564130549803_7341';
 
   // add your middleware config here
-  config.middleware = [];
+  config.middleware = [ 'checktoken' ];
 
   // add your user config here
   const userConfig = {

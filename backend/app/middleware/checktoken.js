@@ -1,14 +1,16 @@
 // eslint-disable-next-line strict
+const fs = require('fs');
+const jwt = require('jsonwebtoken');
 module.exports = () => {
-  const jwt = require('jsonwebtoken');
+
   return async function(ctx, next) {
     if (ctx.request.header.authorization) {
       const token = ctx.request.header.authorization.split(' ')[1];
-      console.log(token);
-      let decoded;
       // 解码token
+      let decoded = '';
       try {
-        decoded = jwt.verify(token, 'xlongway');
+        const cert = fs.readFileSync('./config/key/jwt_public_key.pem')
+        decoded = jwt.verify(token, cert, { algorithms: [ 'RS256' ] });
       } catch (error) {
         ctx.status = 401;
         ctx.body = {
@@ -16,6 +18,7 @@ module.exports = () => {
         };
         return;
       }
+      console.log(decoded);
       // 重置cookie时间
       ctx.cookies.set('token', token, {
         maxAge: 60 * 1000,
