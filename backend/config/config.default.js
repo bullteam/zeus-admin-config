@@ -16,7 +16,7 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1564130549803_7341';
 
   // add your middleware config here
-  config.middleware = [ 'checktoken' ];
+  config.middleware = [];
 
   // add your user config here
   const userConfig = {
@@ -48,7 +48,7 @@ module.exports = appInfo => {
   };
   config.security = {
     csrf: {
-      enable: false, // TODO csrf攻击关闭，需要打开！!
+      enable: false,
     },
   };
   config.multipart = {
