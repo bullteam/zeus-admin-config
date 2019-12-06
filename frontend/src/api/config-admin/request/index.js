@@ -16,8 +16,7 @@ import {
 // create an axios instance
 const service = axios.create({
   // withCredentials: true,
-  // baseURL: process.env.BASE_API, // api 的 base_url
-  baseURL: process.env['VUE_APP_ADMIN'],
+  baseURL: process.env.VUE_APP_CONFIG_API,
   // request timeout
   timeout: 15000
   // 默认表单提交的方式
@@ -60,7 +59,6 @@ service.interceptors.response.use(
     // 102001003 需要
     if (res.code !== 200) {
       // 登录失效
-      console.log(TOKEN_EXPIRATION.includes(res.code))
       if (TOKEN_EXPIRATION.includes(res.code)) {
         // 请自行在引入 MessageBox
         MessageBox.alert('token expired', 'token expired', {
