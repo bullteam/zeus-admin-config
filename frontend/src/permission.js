@@ -5,6 +5,7 @@ import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 import { getToken } from '@/utils/auth' // get token from cookie
 import getPageTitle from '@/utils/get-page-title'
+import { getDomainHost } from '@/utils/index'
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
@@ -65,7 +66,17 @@ router.beforeEach(async(to, from, next) => {
       next()
     } else {
       // other pages that do not have permission to access are redirected to the login page.
-      next(`/login?redirect=${to.path}`)
+      const domainHost = getDomainHost()
+      const currURL = encodeURIComponent(location.href)
+      if (process.env.NODE_ENV === 'production') {
+        if (location.host.startsWith('stage.')) {
+          location.href = `//stage.auth.${domainHost.domain}/login?redirectURL=${currURL}`
+        } else {
+          location.href = `//auth.${domainHost.domain}/login?redirectURL=${currURL}`
+        }
+      } else {
+        next(`/login?redirect=${to.path}`)
+      }
       NProgress.done()
     }
   }
